@@ -1,0 +1,7 @@
+In older TLS certificates, browsers checked the Common Name (CN) to verify the website name. If the URL was example.com, the certificate needed CN=example.com.
+
+This was limited because CN could contain only one name. The Subject Alternative Name (SAN) extension was created to allow multiple domains or IP addresses in one certificate.
+
+Modern browsers such as Mozilla Firefox now ignore CN and check SAN only, because SAN is the standard and avoids ambiguity.
+
+To fix the problem when using OpenSSL, generate the certificate with a SAN field that includes the hostname you access. If the hostname appears in SAN and the CA is trusted, the browser will accept the certificate (details in the OPENSSL Script).
